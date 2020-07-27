@@ -8,8 +8,9 @@
     <br><br><br>
 
     <div class = "d-flex justify-content-center">
-        <form action="/clienti" method="POST">
+        <form action="/clienti/{{ $client->cod }}" method="POST">
             @csrf   
+            @method('PATCH')
             Cod client:  {{ $client->cod }}     
             <br><br>
             Nume client: 

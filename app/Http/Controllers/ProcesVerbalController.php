@@ -150,6 +150,11 @@ class ProcesVerbalController extends Controller
                                           ->with('codProces', $proces->serie_pi);
     }
 
+    public function update($cod)
+    {
+        
+    }
+
     public static function generareCodFirma() 
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

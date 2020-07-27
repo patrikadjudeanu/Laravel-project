@@ -54,4 +54,22 @@ class ClientController extends Controller
         return redirect('/clienti')->with('mesajClient', 'succesStergere')
                                           ->with('numeClient', $client->denumire);
     }
+
+    public function update($cod)
+    {
+        $client = Firma::where('cod', $cod)->first();
+        
+        $firma = Firma::where('denumire', request('numeClient'))->first();
+        if($firma != null && $client->cod != $firma->cod)
+            return redirect('/clienti')->with('mesajClient', 'esecUpdate')
+                                       ->with('numeClient', $client->denumire);
+
+        /*$client->updateOrInsert(
+            ['denumire' => request('numeClient')],
+            ['mail' => request('mailClient')]
+        );
+        */
+        return redirect('/clienti')->with('mesajClient', 'succesUpdate')
+                                   ->with('numeClient', $client->denumire);
+    }
 }
