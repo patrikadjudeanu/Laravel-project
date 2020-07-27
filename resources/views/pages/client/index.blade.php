@@ -60,7 +60,7 @@
                         <tr>
                             <th>{{ $client->cod }}</th>
                             <th>{{ $client->denumire }}</th>
-                            <th>{{ $client->email }}</th>
+                            <th>{{ $client->mail }}</th>
                             <th>
                             <div style = "color: black; /* White text */
                                             padding: 10px 24px; /* Some padding */

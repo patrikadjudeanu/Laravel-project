@@ -34,7 +34,7 @@ class ClientController extends Controller
 
         $client = new Firma();
         $client->denumire = request('numeClient');
-        $client->email = request('mailClient');
+        $client->mail = request('mailClient');
 
         $client->save();
 

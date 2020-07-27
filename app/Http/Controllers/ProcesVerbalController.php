@@ -22,6 +22,7 @@ class ProcesVerbalController extends Controller
     public function show($cod)
     {
         $proces = Models\ProcesVerbal::where('cod', $cod)->first();
+        $echipamente = Models\Echipament::where('din_proces', $proces->serie_pi);
 
         return view('pages/procesVerbal/show', ['proces' => $proces]);
     }
@@ -181,12 +182,12 @@ class ProcesVerbalController extends Controller
     {
         $echipamente = Models\Echipament::where('din_proces', $serie)->get();
         
-        $string = '';
+        $array = array();
         
         foreach($echipamente as $e)
-            $string .= $e->denumire . ' ' . $e->serie  . ' ' . $e->cantitate . ' ' . $e->destinatie . '<br';
+            $array[] = $e;
 
-        return $string;
+        return $array;
     }
 
 }

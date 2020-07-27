@@ -32,6 +32,8 @@ Route::get('/proceseVerbale/{cod}', 'ProcesVerbalController@show');
 
 Route::delete('/proceseVerbale/{cod}', 'ProcesVerbalController@destroy');
 
+Route::patch('/proceseVerbale/{cod}', 'ProcesVerbalController@update');
+
 
 //CLIENTI
 
@@ -46,4 +48,4 @@ Route::get('/clienti/{cod}', 'ClientController@show');
 
 Route::delete('/clienti/{cod}', 'ClientController@destroy');
 
-
+Route::patch('/clienti/{cod}', 'ClientController@update');

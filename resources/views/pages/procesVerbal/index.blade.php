@@ -97,7 +97,8 @@
                             <th>
                                 @php
                                     $echipamente = app\Http\Controllers\ProcesVerbalController::getEchipamente($proces->serie_pi);
-                                    echo $echipamente;
+                                    foreach($echipamente as $echipament)
+                                        echo $echipament->denumire . ' ' . $echipament->serie . ' ' . $echipament->cantitate . ' ' . $echipament->destinatie . '<br>';
                                 @endphp
                             </th>
                             <th>{{($proces->semnat == 0) ? '❌' : '✔️'}}</th>

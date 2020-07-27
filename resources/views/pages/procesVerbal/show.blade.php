@@ -65,41 +65,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td><input type="text" name="denumire1"></td>
-                                    <td><input type="text" name="serie1"></td>
-                                    <td><input type="number" name="cantitate1"></td>
-                                    <td><input type="text" name="destinatie1"></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><input type="text" name="denumire2"></td>
-                                    <td><input type="text" name="serie2"></td>
-                                    <td><input type="number" name="cantitate2"></td>
-                                    <td><input type="text" name="destinatie2"></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td><input type="text" name="denumire3"></td>
-                                    <td><input type="text" name="serie3"></td>
-                                    <td><input type="number" name="cantitate3"></td>
-                                    <td><input type="text" name="destinatie3"></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td><input type="text" name="denumire4"></td>
-                                    <td><input type="text" name="serie4"></td>
-                                    <td><input type="number" name="cantitate4"></td>
-                                    <td><input type="text" name="destinatie4"></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td><input type="text" name="denumire5"></td>
-                                    <td><input type="text" name="serie5"></td>
-                                    <td><input type="number" name="cantitate5"></td>
-                                    <td><input type="text" name="destinatie5"></td>
-                                </tr>
+                                @php
+	                                $cate = 1;
+                                    $echipamente = app\Http\Controllers\ProcesVerbalController::getEchipamente($proces->serie_pi);
+
+                                    foreach($echipamente as $echipament)
+                                    {
+                                        echo '
+                                            <tr>
+                                                <td> '. $cate . '</td>
+                                                <td><input type="text" name="denumire ' . $cate . '" value = " ' . $echipament->denumire . ' "></td>
+                                                <td><input type="text" name="serie ' . $cate . '"  value = " ' . $echipament->serie . '"></td>
+                                                <td><input type="number" name="cantitate ' . $cate . '" value = "' . $echipament->cantitate . '"></td>
+                                                <td><input type="text" name="destinatie ' . $cate . '" value = " ' . $echipament->destinatie . '"></td>
+                                            </tr>
+                                        ';	
+                                        $cate++;
+                                    }
+
+                                    while($cate < 6)
+                                    {
+                                        echo '
+                                            <tr>
+                                                <td> '. $cate . '</td>
+                                                <td><input type="text" name="denumire ' . $cate . '"></td>
+                                                <td><input type="text" name="serie ' . $cate . '"></td>
+                                                <td><input type="number" name="cantitate ' . $cate . '"></td>
+                                                <td><input type="text" name="destinatie ' . $cate . '"></td>
+                                            </tr>
+                                        ';	
+                                        $cate++;
+                        
+                                    }
+                                @endphp
                             </tbody>
                         </table>
                         </div>
@@ -154,7 +152,11 @@
             <div class = "row justify-content-center">
                 <input type="submit" name="saveButton" value="Salvare" class = "btn btn-primary" style = "margin-right:25px">
             </form>
-                <a href=""><button class = "btn btn-danger" >Stergere</button></a>
+            <form action = "/proceseVerbale/{{ $proces->cod }}" method = "POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" name="deleteButton" value="Stergere" class = "btn btn-danger">
+            </form>
             </div>
         <br>
     </div>
