@@ -10,4 +10,6 @@ class Firma extends Model
     protected $primaryKey = 'cod';
 
     public $timestamps = false;
+
+    protected $fillable = ['denumire', 'mail'];
 }

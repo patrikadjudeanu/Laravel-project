@@ -20,10 +20,19 @@
                     </button>
                 </div>
             </div>
-        @elseif(session('mesajClient') == 'succesStergere')
+        @elseif(session('mesajClient') == 'succesUpdate')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Firma '{{ session('numeClient') }}'' a fost stearsa.
+                    Firma '{{ session('numeClient') }}'' a fost editata.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajClient') == 'esecUpdate')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-dark alert-dismissible" role="alert">
+                    Firma '{{ session('numeClient') }}'' exista deja. Editarea a esuat.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

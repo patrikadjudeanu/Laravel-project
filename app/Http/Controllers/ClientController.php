@@ -64,12 +64,13 @@ class ClientController extends Controller
             return redirect('/clienti')->with('mesajClient', 'esecUpdate')
                                        ->with('numeClient', $client->denumire);
 
-        /*$client->updateOrInsert(
-            ['denumire' => request('numeClient')],
-            ['mail' => request('mailClient')]
+        $client->update(
+            ['denumire' => request('numeClient'),
+            'mail' => request('mailClient')]
         );
-        */
+        
         return redirect('/clienti')->with('mesajClient', 'succesUpdate')
                                    ->with('numeClient', $client->denumire);
+                                   
     }
 }

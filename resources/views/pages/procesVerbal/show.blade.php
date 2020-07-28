@@ -8,14 +8,15 @@
     <br><br><br>
 
     <div class = "d-flex justify-content-center">
-        <form action="/proceseVerbale" method="POST">
+        <form action="/proceseVerbale/{{ $proces->cod }}" method="POST">
             @csrf
+            @method('PATCH')
             <div class = "row justify-content-center">
                 <div class = "col-3">
                     <b>Data inserare:</b> <br> {{ $proces->data_inserare }}<br><br>
                 </div>
                 <div class = "col-3">
-                    <b>Data editare:</b> <br> {{ ($proces->data_editare != '') ?  $proces->data_editare : 'Procesul nu a fost editat.' }}<br><br>
+                    <b>Data editare:</b> <br> {{ ($proces->data_editat != '') ?  $proces->data_editat : 'Procesul nu a fost editat.' }}<br><br>
                 </div>
             </div>
             <br>
@@ -74,13 +75,14 @@
                                         echo '
                                             <tr>
                                                 <td> '. $cate . '</td>
-                                                <td><input type="text" name="denumire ' . $cate . '" value = " ' . $echipament->denumire . ' "></td>
-                                                <td><input type="text" name="serie ' . $cate . '"  value = " ' . $echipament->serie . '"></td>
-                                                <td><input type="number" name="cantitate ' . $cate . '" value = "' . $echipament->cantitate . '"></td>
-                                                <td><input type="text" name="destinatie ' . $cate . '" value = " ' . $echipament->destinatie . '"></td>
+                                                <td><input type="text" name="denumire' . $cate . '" value = " ' . $echipament->denumire . ' "></td>
+                                                <td><input type="text" name="serie' . $cate . '"  value = " ' . $echipament->serie . '"></td>
+                                                <td><input type="number" name="cantitate' . $cate . '" value = "' . $echipament->cantitate . '"></td>
+                                                <td><input type="text" name="destinatie' . $cate . '" value = " ' . $echipament->destinatie . '"></td>
                                             </tr>
                                         ';	
                                         $cate++;
+                                        
                                     }
 
                                     while($cate < 6)
@@ -88,14 +90,13 @@
                                         echo '
                                             <tr>
                                                 <td> '. $cate . '</td>
-                                                <td><input type="text" name="denumire ' . $cate . '"></td>
-                                                <td><input type="text" name="serie ' . $cate . '"></td>
-                                                <td><input type="number" name="cantitate ' . $cate . '"></td>
-                                                <td><input type="text" name="destinatie ' . $cate . '"></td>
+                                                <td><input type="text" name="denumire' . $cate . '"></td>
+                                                <td><input type="text" name="serie' . $cate . '"></td>
+                                                <td><input type="number" name="cantitate' . $cate . '"></td>
+                                                <td><input type="text" name="destinatie' . $cate . '"></td>
                                             </tr>
                                         ';	
                                         $cate++;
-                        
                                     }
                                 @endphp
                             </tbody>

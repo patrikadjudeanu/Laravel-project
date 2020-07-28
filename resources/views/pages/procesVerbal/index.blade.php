@@ -38,6 +38,24 @@
                     </button>
                 </div>
             </div>
+        @elseif(session('mesajProces') == 'succesUpdate')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    Procesul verbal cu seria {{ session('codProces') }} a fost modificat.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajProces') == 'esecUpdate')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-dark alert-dismissible" role="alert">
+                    Procesul verbal cu seria {{ session('codProces') }}nu a fost modificat. Date incorecte sau proces semnat.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         @endif
         <div class = "d-flex justify-content-center">
             <bold><span style = "font-size:25px">Procese verbale</span></bold>

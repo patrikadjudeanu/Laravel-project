@@ -152,7 +152,106 @@ class ProcesVerbalController extends Controller
 
     public function update($cod)
     {
-        
+        $proces = Models\ProcesVerbal::where('cod', $cod)->first();
+        $semnat = Models\ProcesVerbal::where('cod', $cod)->first()->semnat;
+
+        if(request('oraInceput') >= request('oraSfarsit') || $semnat == '1')
+            return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
+                                              ->with('codProces', $proces->serie_pi);
+
+
+        if(request('denumire1') != '')
+            if(request('cantitate1') == '' || request('destinatie1') == '')
+                return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
+                                                  ->with('codProces', $proces->serie_pi);
+            else
+            {
+                $echipament = new Models\Echipament();
+                $echipament->denumire = request('denumire1');
+                $echipament->serie = request('serie1');
+                $echipament->cantitate = request('cantitate1');
+                $echipament->destinatie = request('destinatie1');
+                $echipament->din_proces = $proces->serie_pi;
+
+                $echipament->save();
+            }
+                                          
+        if(request('denumire2') != '')
+            if(request('cantitate2') == '' || request('destinatie2') == '')
+                return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
+                                                  ->with('codProces', $proces->serie_pi);
+            else
+                {
+                    $echipament = new Models\Echipament();
+                    $echipament->denumire = request('denumire2');
+                    $echipament->serie = request('serie2');
+                    $echipament->cantitate = request('cantitate2');
+                    $echipament->destinatie = request('destinatie2');
+                    $echipament->din_proces = $proces->serie_pi;
+                    $echipament->save();
+                }
+                                          
+        if(request('denumire3') != '')
+            if(request('cantitate3') == '' || request('destinatie3') == '')
+                return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
+                                                  ->with('codProces', $proces->serie_pi);
+            else
+            {
+                $echipament = new Models\Echipament();
+                $echipament->denumire = request('denumire3');
+                $echipament->serie = request('serie3');
+                $echipament->cantitate = request('cantitate3');
+                $echipament->destinatie = request('destinatie3');
+                $echipament->din_proces = $proces->serie_pi;
+                $echipament->save();
+            }
+                                              
+        if(request('denumire4') != '')
+            if(request('cantitate4') == '' || request('destinatie4') == '')
+                return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
+                                                  ->with('codProces', $proces->serie_pi);
+            else
+            {
+                $echipament = new Models\Echipament();
+                $echipament->denumire = request('denumire4');
+                $echipament->serie = request('serie4');
+                $echipament->cantitate = request('cantitate4');
+                $echipament->destinatie = request('destinatie4');
+                $echipament->din_proces = $proces->serie_pi;
+                $echipament->save();
+            }
+                                  
+        if(request('denumire5') != '')
+            if(request('cantitate5') == '' || request('destinatie5') == '')
+                return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
+                                                  ->with('codProces', $proces->serie_pi);
+        else
+        {
+            $echipament = new Models\Echipament();
+            $echipament->denumire = request('denumire5');
+            $echipament->serie = request('serie5');
+            $echipament->cantitate = request('cantitate5');
+            $echipament->destinatie = request('destinatie5');
+            $echipament->din_proces = $proces->serie_pi;
+            $echipament->save();
+        }
+
+        Models\Echipament::where('din_proces', $proces->serie_pi)->delete();
+
+        $proces->update(
+            ['repr_beneficiar' => request('reprezentantClient'),
+             'problema' => request('problema'),
+             'operatiuni' => request('operatiuni'),
+             'concluzie' => request('concluzii'),
+             'ora_inceput' => request('oraInceput'),
+             'ora_sfarsit' => request('oraSfarsit'),
+             'locatie_interventie' => request('locatie'),
+             'data_editat' => now()]
+        );
+
+
+        return redirect('/proceseVerbale')->with('mesajProces', 'succesUpdate')
+                                          ->with('codProces', $proces->serie_pi);
     }
 
     public static function generareCodFirma() 
