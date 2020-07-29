@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Firma;
+use App\Models\ProcesVerbal;
+use App\Models\Echipament;
 
 class ClientController extends Controller
 {
@@ -49,10 +51,22 @@ class ClientController extends Controller
     {
         $client = Firma::where('cod', $cod)->first();
 
+        $procesSemnat = ProcesVerbal::where('semnat', '1')->where('id_beneficiar', $cod)->first();
+        if($procesSemnat != null)
+            return redirect('/clienti')->with('mesajClient', 'esecStergere')
+                                       ->with('numeClient', $client->denumire);
+
+        $procese = ProcesVerbal::where('id_beneficiar', $cod)->get();
+        foreach($procese as $proces)
+        {
+            Echipament::where('din_proces', $proces->serie_pi)->delete();
+            $proces->delete();
+        }       
+
         $client->delete();
 
         return redirect('/clienti')->with('mesajClient', 'succesStergere')
-                                          ->with('numeClient', $client->denumire);
+                                   ->with('numeClient', $client->denumire);
     }
 
     public function update($cod)
@@ -68,6 +82,12 @@ class ClientController extends Controller
             ['denumire' => request('numeClient'),
             'mail' => request('mailClient')]
         );
+
+        $procese = ProcesVerbal::where('id_beneficiar', $cod)->get();
+        foreach($procese as $proces)
+            $proces->update(
+                ['beneficiar' => request('numeClient')]
+                );
         
         return redirect('/clienti')->with('mesajClient', 'succesUpdate')
                                    ->with('numeClient', $client->denumire);

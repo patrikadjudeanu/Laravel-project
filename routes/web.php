@@ -49,3 +49,14 @@ Route::get('/clienti/{cod}', 'ClientController@show');
 Route::delete('/clienti/{cod}', 'ClientController@destroy');
 
 Route::patch('/clienti/{cod}', 'ClientController@update');
+
+
+//DOCUMENTE
+
+Route::get('/documente/proces/{cod}', 'DocumentController@show');
+
+Route::post('/documente/proces/semnare/{cod}', 'DocumentController@update');
+
+Route::post('/documente/proces/trimiteProces/{cod}', 'DocumentController@sendProces');
+
+Route::post('/documente/firma/trimiteProcese/{cod}', 'DocumentController@sendProcesFirma');

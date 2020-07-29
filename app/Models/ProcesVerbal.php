@@ -11,5 +11,7 @@ class ProcesVerbal extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['repr_beneficiar', 'problema', 'operatiuni', 'concluzie', 'ora_inceput', 'ora_sfarsit', 'locatie_interventie', 'editat', 'data_editat'];
+    protected $fillable = ['repr_beneficiar', 'beneficiar', 'problema', 'operatiuni', 'concluzie', 'ora_inceput',
+                           'ora_sfarsit', 'locatie_interventie', 'editat', 'data_editat',
+                           'semnat', 'data_semnat', 'ip_semnat'];
 }

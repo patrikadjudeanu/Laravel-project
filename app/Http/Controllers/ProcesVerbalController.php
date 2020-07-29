@@ -160,6 +160,10 @@ class ProcesVerbalController extends Controller
                                               ->with('codProces', $proces->serie_pi);
 
 
+
+        Models\Echipament::where('din_proces', $proces->serie_pi)->delete();
+
+
         if(request('denumire1') != '')
             if(request('cantitate1') == '' || request('destinatie1') == '')
                 return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
@@ -236,7 +240,6 @@ class ProcesVerbalController extends Controller
             $echipament->save();
         }
 
-        Models\Echipament::where('din_proces', $proces->serie_pi)->delete();
 
         $proces->update(
             ['repr_beneficiar' => request('reprezentantClient'),
@@ -249,7 +252,7 @@ class ProcesVerbalController extends Controller
              'data_editat' => now()]
         );
 
-
+        
         return redirect('/proceseVerbale')->with('mesajProces', 'succesUpdate')
                                           ->with('codProces', $proces->serie_pi);
     }

@@ -4,7 +4,7 @@
         @if(session('mesajClient') == 'succesAdaugare')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Firma '{{ session('numeClient') }}'' a fost adaugata.
+                    Firma '{{ session('numeClient') }}' a fost adaugata.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -23,7 +23,7 @@
         @elseif(session('mesajClient') == 'succesUpdate')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Firma '{{ session('numeClient') }}'' a fost editata.
+                    Firma '{{ session('numeClient') }}' a fost editata.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -32,7 +32,43 @@
         @elseif(session('mesajClient') == 'esecUpdate')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-dark alert-dismissible" role="alert">
-                    Firma '{{ session('numeClient') }}'' exista deja. Editarea a esuat.
+                    Firma '{{ session('numeClient') }}' exista deja. Editarea a esuat.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajClient') == 'succesStergere')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    Firma '{{ session('numeClient') }}' a fost stearsa.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajClient') == 'esecStergere')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-dark alert-dismissible" role="alert">
+                    Firma '{{ session('numeClient') }}' are procese semnate. Stergerea a esuat.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajClient') == 'succesTrimitere')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    Procesele verbale ale firmei '{{ session('numeClient') }}' au fost trimise.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajClient') == 'esecTrimitere')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-dark alert-dismissible" role="alert">
+                    Firma '{{ session('numeClient') }}' nu are adresa de e-mail. Trimiterea a esuat.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -71,20 +107,20 @@
                             <th>{{ $client->denumire }}</th>
                             <th>{{ $client->mail }}</th>
                             <th>
-                            <div style = "color: black; /* White text */
-                                            padding: 10px 24px; /* Some padding */
-                                            cursor: pointer; /* Pointer/hand icon */
-                                            float: left; /* Float the buttons side by side */
-                            ">
-                                    <a href = "{{ url('clienti/' . $client->cod) }}">&#128269;</a> 
-                                
+                            <div class = "row">   
+                                    <form action = "/clienti/{{ $client->cod }}">
+                                        @csrf
+                                        <input type="submit"  class = "btn btn-sm" value = "&#128269;">
+                                    </form>
                                     <form action = "/clienti/{{ $client->cod }}" method = "POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class = "btn btn-sm">&#10060;<button>
+                                        <input type="submit"  class = "btn btn-sm" value = "&#10060;">
                                     </form>
-
-                                   <a href = "{{ url('clienti/' . $client->cod) }}">&#9993;</a> 
+                                    <form action = "/documente/firma/trimiteProcese/{{ $client->cod }}" method = "POST">
+                                        @csrf
+                                        <input type="submit"  class = "btn btn-sm" value = "&#9993;">
+                                    </form>
                             </div>       
                             </th>
                         </tr>

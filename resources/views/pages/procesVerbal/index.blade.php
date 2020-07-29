@@ -50,7 +50,26 @@
         @elseif(session('mesajProces') == 'esecUpdate')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-dark alert-dismissible" role="alert">
-                    Procesul verbal cu seria {{ session('codProces') }}nu a fost modificat. Date incorecte sau proces semnat.
+                    Procesul verbal cu seria {{ session('codProces') }} nu a fost modificat. Date incorecte sau proces semnat.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajProces') == 'succesTrimitere')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    Procesul verbal cu seria {{ session('codProces') }} a fost trimis.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @elseif(session('mesajProces') == 'esecTrimitere')
+            <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
+                <div class="alert alert-dark alert-dismissible" role="alert">
+                    Procesul verbal nu a fost trimis.<br>
+                    Adresa de e-mail nu este precizata.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -121,21 +140,20 @@
                             </th>
                             <th>{{($proces->semnat == 0) ? '❌' : '✔️'}}</th>
                             <th style="height:50px">
-                                <div style = "color: black; /* White text */
-                                                padding: 10px 24px; /* Some padding */
-                                                cursor: pointer; /* Pointer/hand icon */
-                                                float: left; /* Float the buttons side by side */
-                                ">
-                                    <a href ="{{  url('proceseVerbale/' . $proces->cod) }}">&#128269;</a> 
-                                    
+                                <div class = "row">
+                                    <form action = "/proceseVerbale/{{ $proces->cod }}">
+                                        @csrf
+                                        <input type="submit"  class = "btn btn-sm" value = "&#128269;">
+                                    </form>
                                     <form action = "/proceseVerbale/{{ $proces->cod }}" method = "POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class = "btn btn-sm">&#10060;<button>
+                                        <input type="submit"  class = "btn btn-sm" value = "&#10060;">
                                     </form>
-                                    
-                                    <a href = "">&#9993;</a>
-                                    
+                                    <form action = "/documente/proces/trimiteProces/{{ $proces->cod }}" method = "POST">
+                                        @csrf
+                                        <input type="submit"  class = "btn btn-sm" value = "&#9993;">
+                                    </form>
                                 </div>
                             </th>
                         </tr>
