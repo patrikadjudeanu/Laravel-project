@@ -16,8 +16,18 @@ use Illuminate\Support\Facades\Route;
 //HOMEPAGE
 
 Route::get('/', function () {
-    return view('pages/home');
+    return redirect('/proceseVerbale');
 });
+
+//LOGIN
+
+Route::get('/logout', function(){
+
+    Auth::logout();
+    return redirect('/login');
+});
+
+
 
 
 //PROCESE VERBALE
@@ -60,3 +70,11 @@ Route::post('/documente/proces/semnare/{cod}', 'DocumentController@update');
 Route::post('/documente/proces/trimiteProces/{cod}', 'DocumentController@sendProces');
 
 Route::post('/documente/firma/trimiteProcese/{cod}', 'DocumentController@sendProcesFirma');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//AUTH
+
+Auth::routes(
+    ['register' => false]
+);

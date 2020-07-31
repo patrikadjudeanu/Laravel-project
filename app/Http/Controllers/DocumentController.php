@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\MailProces;
 use App\Models\ProcesVerbal;
 use App\Models\Firma;
 
@@ -37,7 +38,9 @@ class DocumentController extends Controller
         return redirect('/proceseVerbale')->with('mesajProces', 'esecTrimitere')
                                           ->with('codProces', $proces->serie_pi);
 
-        //TODO: sendProces
+        
+        \Mail::to($firma->mail)->send(new MailProces($proces->cod, $proces->data_inserare));
+        
         return redirect('/proceseVerbale')->with('mesajProces', 'succesTrimitere')
                                           ->with('codProces', $proces->serie_pi);
     }

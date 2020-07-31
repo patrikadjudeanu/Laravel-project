@@ -77,7 +77,7 @@
             </div>
         @endif
         <div class = "d-flex justify-content-center">
-            <bold><span style = "font-size:25px">Procese verbale</span></bold>
+            <bold><span style = "font-size:40px">Procese verbale</span></bold>
         </div>
         <br>
         <div class = "table">

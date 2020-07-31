@@ -7,6 +7,11 @@ use App\Models;
 
 class ProcesVerbalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $procese = Models\ProcesVerbal::orderBy('serie_pi', 'desc')->get();
