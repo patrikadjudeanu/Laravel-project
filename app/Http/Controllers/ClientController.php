@@ -49,7 +49,7 @@ class ClientController extends Controller
 
         return redirect('/clienti')->with('mesajClient', 'succesAdaugare')
                                    ->with('numeClient', $client->denumire)
-                                   ->with('codClient', $codFirma);
+                                   ->with('codClient', $client->cod);
     }
 
     public function destroy($cod)
@@ -71,7 +71,8 @@ class ClientController extends Controller
         $client->delete();
 
         return redirect('/clienti')->with('mesajClient', 'succesStergere')
-                                   ->with('numeClient', $client->denumire);
+                                   ->with('numeClient', $client->denumire)
+                                   ->with('codClient', $client->cod);
     }
 
     public function update($cod)
@@ -95,7 +96,8 @@ class ClientController extends Controller
                 );
         
         return redirect('/clienti')->with('mesajClient', 'succesUpdate')
-                                   ->with('numeClient', $client->denumire);
+                                   ->with('numeClient', $client->denumire)
+                                   ->with('codClient', $client->cod);
                                    
     }
 }

@@ -136,7 +136,8 @@ class ProcesVerbalController extends Controller
 
         $serie = Models\ProcesVerbal::select('serie_pi')->where('cod', $proces->cod)->first()->serie_pi;
         return redirect('/proceseVerbale')->with('mesajProces', 'succesAdaugare')
-                                          ->with('codProces', $serie);
+                                          ->with('serieProces', $serie)
+                                          ->with('codProces', $proces->cod);
     }
 
     public function destroy($cod)
@@ -145,14 +146,16 @@ class ProcesVerbalController extends Controller
 
         if($proces->semnat != 0)
             return redirect('/proceseVerbale')->with('mesajProces', 'esecStergere')
-                                              ->with('codProces', $proces->serie_pi);
+                                              ->with('serieProces', $proces->serie_pi);
+                                              
 
 
         Models\Echipament::where('din_proces', $proces->serie_pi)->delete();
         $proces->delete();
 
         return redirect('/proceseVerbale')->with('mesajProces', 'succesStergere')
-                                          ->with('codProces', $proces->serie_pi);
+                                          ->with('serieProces', $proces->serie_pi)
+                                          ->with('codProces', $proces->cod);
     }
 
     public function update($cod)
@@ -162,7 +165,7 @@ class ProcesVerbalController extends Controller
 
         if(request('oraInceput') >= request('oraSfarsit') || $semnat == '1')
             return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
-                                              ->with('codProces', $proces->serie_pi);
+                                              ->with('serieProces', $proces->serie_pi);
 
 
 
@@ -172,7 +175,7 @@ class ProcesVerbalController extends Controller
         if(request('denumire1') != '')
             if(request('cantitate1') == '' || request('destinatie1') == '')
                 return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
-                                                  ->with('codProces', $proces->serie_pi);
+                                                  ->with('serieProces', $proces->serie_pi);
             else
             {
                 $echipament = new Models\Echipament();
@@ -188,7 +191,8 @@ class ProcesVerbalController extends Controller
         if(request('denumire2') != '')
             if(request('cantitate2') == '' || request('destinatie2') == '')
                 return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
-                                                  ->with('codProces', $proces->serie_pi);
+                                                  ->with('serieProces', $proces->serie_pi)
+                                                  ->with('codProces', $proces->cod);
             else
                 {
                     $echipament = new Models\Echipament();
@@ -203,7 +207,7 @@ class ProcesVerbalController extends Controller
         if(request('denumire3') != '')
             if(request('cantitate3') == '' || request('destinatie3') == '')
                 return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
-                                                  ->with('codProces', $proces->serie_pi);
+                                                  ->with('serieProces', $proces->serie_pi);
             else
             {
                 $echipament = new Models\Echipament();
@@ -218,7 +222,7 @@ class ProcesVerbalController extends Controller
         if(request('denumire4') != '')
             if(request('cantitate4') == '' || request('destinatie4') == '')
                 return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
-                                                  ->with('codProces', $proces->serie_pi);
+                                                  ->with('serieProces', $proces->serie_pi);
             else
             {
                 $echipament = new Models\Echipament();
@@ -233,7 +237,7 @@ class ProcesVerbalController extends Controller
         if(request('denumire5') != '')
             if(request('cantitate5') == '' || request('destinatie5') == '')
                 return redirect('/proceseVerbale')->with('mesajProces', 'esecUpdate')
-                                                  ->with('codProces', $proces->serie_pi);
+                                                  ->with('serieProces', $proces->serie_pi);
         else
         {
             $echipament = new Models\Echipament();
@@ -257,9 +261,10 @@ class ProcesVerbalController extends Controller
              'data_editat' => now()]
         );
 
-        
+
         return redirect('/proceseVerbale')->with('mesajProces', 'succesUpdate')
-                                          ->with('codProces', $proces->serie_pi);
+                                          ->with('serieProces', $proces->serie_pi)
+                                          ->with('codProces', $proces->cod);
     }
 
     public static function generareCodFirma() 
@@ -301,5 +306,4 @@ class ProcesVerbalController extends Controller
 
         return $array;
     }
-
 }

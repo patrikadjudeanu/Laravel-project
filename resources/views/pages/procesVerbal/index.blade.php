@@ -4,7 +4,7 @@
         @if(session('mesajProces') == 'succesAdaugare')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Procesul verbal cu seria {{ session('codProces') }} a fost adaugat.
+                    Procesul verbal cu seria {{ session('serieProces') }} a fost adaugat.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -23,7 +23,7 @@
         @elseif(session('mesajProces') == 'succesStergere')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Procesul verbal cu seria {{ session('codProces') }} a fost sters.
+                    Procesul verbal cu seria {{ session('serieProces') }} a fost sters.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -41,7 +41,7 @@
         @elseif(session('mesajProces') == 'succesUpdate')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Procesul verbal cu seria {{ session('codProces') }} a fost modificat.
+                    Procesul verbal cu seria {{ session('serieProces') }} a fost modificat.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -50,7 +50,7 @@
         @elseif(session('mesajProces') == 'esecUpdate')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-dark alert-dismissible" role="alert">
-                    Procesul verbal cu seria {{ session('codProces') }} nu a fost modificat. Date incorecte sau proces semnat.
+                    Procesul verbal cu seria {{ session('serieProces') }} nu a fost modificat. Date incorecte sau proces semnat.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -59,7 +59,7 @@
         @elseif(session('mesajProces') == 'succesTrimitere')
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                    Procesul verbal cu seria {{ session('codProces') }} a fost trimis.
+                    Procesul verbal cu seria {{ session('serieProces') }} a fost trimis.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
