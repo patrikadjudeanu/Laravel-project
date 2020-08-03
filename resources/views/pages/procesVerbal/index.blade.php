@@ -5,6 +5,22 @@
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     Procesul verbal cu seria {{ session('serieProces') }} a fost adaugat.
+                    <br><br>
+                    <div class = "row justify-content-center">
+                        <form action = "/proceseVerbale/{{ session('codProces') }}" style = "padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Detalii">
+                        </form>
+                        <form action = "/documente/proces/trimiteProces/{{ session('codProces') }}" method = "POST" style = "padding-left:5px;padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Trimite proces">
+                        </form>
+                        <form action = "/proceseVerbale/{{ session('codProces') }}" method = "POST" style = "padding-left:5px">
+                            @csrf
+                            @method('DELETE')
+                            <input type = "submit" class = "btn btn-danger btn-sm" value = "Stergere">
+                        </form>
+                    </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -42,6 +58,21 @@
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     Procesul verbal cu seria {{ session('serieProces') }} a fost modificat.
+                    <div class = "row justify-content-center">
+                        <form action = "/proceseVerbale/{{ session('codProces') }}" style = "padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Detalii">
+                        </form>
+                        <form action = "/documente/proces/trimiteProces/{{ session('codProces') }}" method = "POST" style = "padding-left:5px;padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Trimite proces">
+                        </form>
+                        <form action = "/proceseVerbale/{{ session('codProces') }}" method = "POST" style = "padding-left:5px">
+                            @csrf
+                            @method('DELETE')
+                            <input type = "submit" class = "btn btn-danger btn-sm" value = "Stergere">
+                        </form>
+                    </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

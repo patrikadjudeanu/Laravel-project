@@ -5,6 +5,18 @@
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     Firma '{{ session('numeClient') }}' a fost adaugata.
+                    <br><br>
+                    <div class = "row justify-content-center">
+                        <form action = "/clienti/{{ session('codClient') }}" style = "padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Detalii">
+                        </form>
+                        <form action = "/clienti/{{ session('codClient') }}" method = "POST" style = "padding-left:5px">
+                            @csrf
+                            @method('DELETE')
+                            <input type = "submit" class = "btn btn-danger btn-sm" value = "Stergere">
+                        </form>
+                    </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -24,6 +36,22 @@
             <div class = "d-flex justify-content-center" style="text-align: center; padding-top: 10px">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     Firma '{{ session('numeClient') }}' a fost editata.
+                    <br><br>
+                    <div class = "row justify-content-center">
+                        <form action = "/clienti/{{ session('codClient') }}" style = "padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Detalii">
+                        </form>
+                        <form action = "/documente/firma/trimiteProcese/{{ session('codClient') }}" method = "POST"style = "padding-left:5px;padding-right:5px">
+                            @csrf
+                            <input type = "submit" class = "btn btn-warning btn-sm" value = "Trimite procese">
+                        </form>
+                        <form action = "/clienti/{{ session('codClient') }}" method = "POST"style = "padding-left:5px">
+                            @csrf
+                            @method('DELETE')
+                            <input type = "submit" class = "btn btn-danger btn-sm" value = "Stergere">
+                        </form>
+                    </div>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
