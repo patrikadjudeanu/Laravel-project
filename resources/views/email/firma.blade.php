@@ -2,7 +2,7 @@
 Buna ziua,
 
 
-V-am trimis link-urile pentru procesele verbale din:
+V-am trimis link-urile pentru procesele verbale din:<br>
 @foreach($procese as $proces)
     <a href = "{{ url('/documente/proces/' . $proces->cod) }}">{{ $proces->data_inserare }}</a>
     <br>

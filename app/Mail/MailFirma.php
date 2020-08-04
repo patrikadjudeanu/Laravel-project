@@ -6,9 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Http\Models\ProcesVerbal;
+use App\Models\ProcesVerbal;
 
-class MailProces extends Mailable
+class MailFirma extends Mailable
 {
     use Queueable, SerializesModels;
 
